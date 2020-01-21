@@ -1,0 +1,126 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Adams et~al.]{Adams, Baek \harvardand\ Davis}{2010}{adams2010fast}
+Adams, A., Baek, J. \harvardand\ Davis, M.~A.  \harvardyearleft
+  2010\harvardyearright , Fast high-dimensional filtering using the
+  permutohedral lattice, {\em in} `Computer Graphics Forum', Vol.~29, Wiley
+  Online Library, pp.~753--762.
+
+\harvarditem[Adams et~al.]{Adams, Gelfand, Dolson \harvardand\
+  Levoy}{2009}{Adams:2009:GKF:1531326.1531327}
+Adams, A., Gelfand, N., Dolson, J. \harvardand\ Levoy, M.  \harvardyearleft
+  2009\harvardyearright , `Gaussian kd-trees for fast high-dimensional
+  filtering', {\em ACM Trans. Graph.} {\bf 28}(3),~21:1--21:12.
+\newline\harvardurl{http://doi.acm.org/10.1145/1531326.1531327}
+
+\harvarditem[Banterle et~al.]{Banterle, Debattista, Artusi, Pattanaik,
+  Myszkowski, Ledda \harvardand\
+  Chalmers}{2009}{doi:10.1111/j.1467-8659.2009.01541.x}
+Banterle, F., Debattista, K., Artusi, A., Pattanaik, S., Myszkowski, K., Ledda,
+  P. \harvardand\ Chalmers, A.  \harvardyearleft 2009\harvardyearright , `High
+  dynamic range imaging and low dynamic range expansion for generating hdr
+  content', {\em Computer Graphics Forum} {\bf 28}(8),~2343--2367.
+\newline\harvardurl{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8659.2009.01541.x}
+
+\harvarditem[Banterle et~al.]{Banterle, Ledda, Debattista \harvardand\
+  Chalmers}{2006}{Banterle:2006:ITM:1174429.1174489}
+Banterle, F., Ledda, P., Debattista, K. \harvardand\ Chalmers, A.
+  \harvardyearleft 2006\harvardyearright , Inverse tone mapping, {\em in}
+  `Proceedings of the 4th International Conference on Computer Graphics and
+  Interactive Techniques in Australasia and Southeast Asia', GRAPHITE '06, ACM,
+  New York, NY, USA, pp.~349--356.
+\newline\harvardurl{http://doi.acm.org/10.1145/1174429.1174489}
+
+\harvarditem[Banterle et~al.]{Banterle, Ledda, Debattista \harvardand\
+  Chalmers}{2010}{Banterle:2008:ELD:1921264.1921275}
+Banterle, F., Ledda, P., Debattista, K. \harvardand\ Chalmers, A.
+  \harvardyearleft 2010\harvardyearright , Expanding low dynamic range videos
+  for high dynamic range applications, {\em in} `Proceedings of the 24th Spring
+  Conference on Computer Graphics', SCCG '08, ACM, New York, NY, USA,
+  pp.~33--41.
+\newline\harvardurl{http://doi.acm.org/10.1145/1921264.1921275}
+
+\harvarditem{Bennett \harvardand\
+  McMillan}{2005}{Bennett:2005:VEU:1073204.1073272}
+Bennett, E.~P. \harvardand\ McMillan, L.  \harvardyearleft
+  2005\harvardyearright , `Video enhancement using per-pixel virtual
+  exposures', {\em ACM Trans. Graph.} {\bf 24}(3),~845--852.
+\newline\harvardurl{http://doi.acm.org/10.1145/1073204.1073272}
+
+\harvarditem[Didyk et~al.]{Didyk, Mantiuk, Hein \harvardand\
+  Seidel}{2008}{doi:10.1111/j.1467-8659.2008.01265.x}
+Didyk, P., Mantiuk, R., Hein, M. \harvardand\ Seidel, H.  \harvardyearleft
+  2008\harvardyearright , `Enhancement of bright video features for hdr
+  displays', {\em Computer Graphics Forum} {\bf 27}(4),~1265--1274.
+\newline\harvardurl{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8659.2008.01265.x}
+
+\harvarditem[Eilertsen et~al.]{Eilertsen, Kronander, Denes, Mantiuk
+  \harvardand\ Unger}{2017}{Eilertsen:2017:HIR:3130800.3130816}
+Eilertsen, G., Kronander, J., Denes, G., Mantiuk, R.~K. \harvardand\ Unger, J.
+  \harvardyearleft 2017\harvardyearright , `Hdr image reconstruction from a
+  single exposure using deep cnns', {\em ACM Trans. Graph.} {\bf
+  36}(6),~178:1--178:15.
+\newline\harvardurl{http://doi.acm.org/10.1145/3130800.3130816}
+
+\harvarditem[Endo et~al.]{Endo, Kanamori \harvardand\
+  Mitani}{2017}{endo2017deep}
+Endo, Y., Kanamori, Y. \harvardand\ Mitani, J.  \harvardyearleft
+  2017\harvardyearright , `Deep reverse tone mapping.', {\em ACM Trans. Graph.}
+  {\bf 36}(6),~177--1.
+
+\harvarditem[Frosio et~al.]{Frosio, Egiazarian \harvardand\
+  Pulli}{2015}{frosio2015machine}
+Frosio, I., Egiazarian, K. \harvardand\ Pulli, K.  \harvardyearleft
+  2015\harvardyearright , Machine learning for adaptive bilateral filtering,
+  {\em in} `Image Processing: Algorithms and Systems XIII', Vol. 9399,
+  International Society for Optics and Photonics, p.~939908.
+
+\harvarditem[Kim et~al.]{Kim, Park, Han \harvardand\ Ko}{2015}{kim2015novel}
+Kim, M., Park, D., Han, D.~K. \harvardand\ Ko, H.  \harvardyearleft
+  2015\harvardyearright , `A novel approach for denoising and enhancement of
+  extremely low-light video', {\em IEEE Transactions on Consumer Electronics}
+  {\bf 61}(1),~72--80.
+
+\harvarditem{Kovaleski \harvardand\ Oliveira}{2009}{Kovaleski2009}
+Kovaleski, R.~P. \harvardand\ Oliveira, M.~M.  \harvardyearleft
+  2009\harvardyearright , `High-quality brightness enhancement functions for
+  real-time reverse tone mapping', {\em The Visual Computer} {\bf
+  25}(5),~539--547.
+\newline\harvardurl{https://doi.org/10.1007/s00371-009-0327-3}
+
+\harvarditem[Li et~al.]{Li, Wang, Wang \harvardand\ Gao}{2015}{li2015low}
+Li, L., Wang, R., Wang, W. \harvardand\ Gao, W.  \harvardyearleft
+  2015\harvardyearright , A low-light image enhancement method for both
+  denoising and contrast enlarging, {\em in} `2015 IEEE International
+  Conference on Image Processing (ICIP)', IEEE, pp.~3730--3734.
+
+\harvarditem[Malm et~al.]{Malm, Oskarsson, Warrant, Clarberg, Hasselgren
+  \harvardand\ Lejdfors}{2007}{malm2007adaptive}
+Malm, H., Oskarsson, M., Warrant, E., Clarberg, P., Hasselgren, J. \harvardand\
+  Lejdfors, C.  \harvardyearleft 2007\harvardyearright , Adaptive enhancement
+  and noise reduction in very low light-level video, {\em in} `2007 IEEE 11th
+  International Conference on Computer Vision', IEEE, pp.~1--8.
+
+\harvarditem[Rempel et~al.]{Rempel, Trentacoste, Seetzen, Young, Heidrich,
+  Whitehead \harvardand\ Ward}{2007}{Rempel:2007:LOR:1276377.1276426}
+Rempel, A.~G., Trentacoste, M., Seetzen, H., Young, H.~D., Heidrich, W.,
+  Whitehead, L. \harvardand\ Ward, G.  \harvardyearleft 2007\harvardyearright ,
+  `Ldr2hdr: On-the-fly reverse tone mapping of legacy video and photographs',
+  {\em ACM Trans. Graph.} {\bf 26}(3).
+\newline\harvardurl{http://doi.acm.org/10.1145/1276377.1276426}
+
+\harvarditem[Yuan et~al.]{Yuan, Sun, Quan \harvardand\
+  Shum}{2007}{Yuan:2007:IDB:1276377.1276379}
+Yuan, L., Sun, J., Quan, L. \harvardand\ Shum, H.-Y.  \harvardyearleft
+  2007\harvardyearright , `Image deblurring with blurred/noisy image pairs',
+  {\em ACM Trans. Graph.} {\bf 26}(3).
+\newline\harvardurl{http://doi.acm.org/10.1145/1276377.1276379}
+
+\harvarditem[{Zhang} et~al.]{{Zhang}, {Shen}, {Luo}, {Zhang} \harvardand\
+  {Song}}{2012}{6460559}
+{Zhang}, X., {Shen}, P., {Luo}, L., {Zhang}, L. \harvardand\ {Song}, J.
+  \harvardyearleft 2012\harvardyearright , Enhancement and noise reduction of
+  very low light level images, {\em in} `Proceedings of the 21st International
+  Conference on Pattern Recognition (ICPR2012)'.
+
+\end{thebibliography}
