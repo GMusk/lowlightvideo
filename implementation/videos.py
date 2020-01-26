@@ -3,22 +3,25 @@ import cv2
 from matplotlib import pyplot as plt
 import sys
 import argparse
+import queue
 
 # add argument parser for clean use
 parser = argparse.ArgumentParser(description="Video Enhancer")
-parser.add_argument('-p', '--path', type=str, help='source of video file')
+parser.add_argument('-p', '--path', required=True, type=str, help='source of video file')
 parser.add_argument('-l', '--loop', action='store_true', help='repeat loop of video')
-parser.add_argument('-s', '--size', nargs=2,  help='size of video to display')
+parser.add_argument('-s', '--size', nargs=2, type=int, help='size of video to display')
+parser.add_argument('-w', '--write', action='store_true', help='store processed video')
 args = parser.parse_args()
 
 
 class MovingAverage:
     def __init__(self, first=None):
+        self.queue = queue.Queue()
         self.previous = first
         self.frame = 1
 
     def add(self, frame):
-        current = self.previous + ((frame - self.previous) / (self.frame + 1))
+        current = (0.3*self.previous + 0.7*frame)
         self.previous = current
         self.frame += 1
         print(self.frame)
@@ -35,7 +38,7 @@ def getVideo(path):
     else:
         return cap
 
-def loopVideo(cap, size, loop):
+def loopVideo(cap, size, loop, vw):
     count = 0
     _, first = cap.read()
     ma = MovingAverage(first)
@@ -49,7 +52,8 @@ def loopVideo(cap, size, loop):
             smoothFrame = ma.get_current() / 255.0
             # resize
             frame = cv2.resize(frame, (size[0], size[1]))
-
+            if vw:
+                vw.write(frame)
             # Call image operations here
             editFrame = imageOperations(frame)
 
@@ -64,9 +68,6 @@ def loopVideo(cap, size, loop):
         # key to break playback
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    # When everything done, release the capture
-    cap.release()
-    cv2.destroyAllWindows()
 
 def imageOperations(frame):
     # convert to luminance
@@ -163,14 +164,26 @@ def clahe():
 
 
 def main(args):
+    # get capture object
     cap = getVideo(args.path)
-    if args.size == None:
-        size = [640, 480]
+    videoWriter = None
+    if args.size != None:
+        size = tuple(args.size)
     else:
-        size = args.size
+        # get caps original size
+        size = (int(cap.get(3)), int(cap.get(4)))
+    if args.write == True:
+        # set codec for written video
+        filename = 'out-' + args.path.split('.')[0] + '.mp4'
+        fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+        fps = int(cap.get(cv2.CAP_PROP_FPS))
+        videoWriter = cv2.VideoWriter(filename, fourcc, fps, size)
     if cap != None:
-        loopVideo(cap, size, args.loop)
-
+        loopVideo(cap, size, args.loop, videoWriter)
+    # When everything done, release the capture
+    videoWriter.release()
+    cap.release()
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     # when run as script
