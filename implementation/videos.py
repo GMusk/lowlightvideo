@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 import sys
+import math
 import argparse
-import queue
 
 # add argument parser for clean use
 parser = argparse.ArgumentParser(description="Video Enhancer")
@@ -15,19 +15,48 @@ args = parser.parse_args()
 
 
 class MovingAverage:
-    def __init__(self, first=None):
-        self.queue = queue.Queue()
-        self.previous = first
-        self.frame = 1
+    def __init__(self, size):
+        self.size = size
+        self.queue = []
+        self.bufferSize = 30
 
     def add(self, frame):
-        current = (0.3*self.previous + 0.7*frame)
-        self.previous = current
-        self.frame += 1
-        print(self.frame)
+        # check buffer isnt full
+        averageFrame = None
+        if len(self.queue) >= self.bufferSize:
+            averageFrame = self.average()
+            self.queue.pop(0)
+        self.queue.append(frame)
+        return averageFrame
 
-    def get_current(self):
-        return self.previous
+    def average(self):
+        average = np.zeros((self.size[1], self.size[0], 3), dtype=np.uint16)
+        for frame in self.queue:
+            average += frame
+        return average / self.bufferSize
+
+
+class FrameEditor:
+    def __init__(self, gamma=1.5):
+        self.gamma = gamma
+        # get lookup table
+        self.lookup = np.array([math.log(i, 10) * 106 for i in np.arange(1, 257)], dtype=np.uint8)
+
+    def doOperation(self, frame):
+        # gamma correction
+        gamma_corrected_f = np.power(frame/ 255, self.gamma) * 255
+        # check for overflow
+        if gamma_corrected_f.max() > 255:
+            gamma_corrected_f = gamma_corrected_f * (255 / gamma_corrected_f.max())
+        gamma_corrected_i = gamma_corrected_f.astype("uint8")
+        # apply lookup table
+        edited = cv2.LUT(gamma_corrected_i, self.lookup)
+        # return gamme
+        gamma_final_f = np.power(edited / 255, 1 / 2.2) * 255
+        if gamma_final_f.max() > 255:
+            gamma_final_f = gamma_final_f * (255 / gamma_final_f.max())
+        gamma_final_i = gamma_final_f.astype("uint8")
+        return gamma_final_i
 
 
 def getVideo(path):
@@ -38,26 +67,29 @@ def getVideo(path):
     else:
         return cap
 
+
 def loopVideo(cap, size, loop, vw):
-    count = 0
-    _, first = cap.read()
-    ma = MovingAverage(first)
+    # initiate average and edit class
+    ma = MovingAverage(size)
+    fe = FrameEditor()
     while(cap.isOpened()):
         # Capture frame-by-frame
         ret, frame = cap.read()
 
         if ret:
-            # store frame in moving average
-            ma.add(frame)
-            smoothFrame = ma.get_current() / 255.0
-            # resize
-            frame = cv2.resize(frame, (size[0], size[1]))
-            if vw:
-                vw.write(frame)
             # Call image operations here
-            editFrame = imageOperations(frame)
+            editFrame = fe.doOperation(frame)
 
-            cv2.imshow("MA", smoothFrame)
+            # store frame in moving average
+            av_frame = ma.add(editFrame)
+
+            # smoothFrame = ma.get_current() / 255.0
+
+            if vw and av_frame is not None:
+                # resize
+                # r_frame = cv2.resize(av_frame, (size[0], size[1]))
+                av_frame = np.uint8(av_frame)
+                vw.write(av_frame)
         else:
             # if looping
             if loop:
@@ -69,10 +101,6 @@ def loopVideo(cap, size, loop, vw):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-def imageOperations(frame):
-    # convert to luminance
-    luma = cv2.split(cv2.cvtColor(frame, cv2.COLOR_BGR2XYZ))[1]
-    return luma
 
 def histogram():
     # get each color plane
@@ -132,6 +160,7 @@ def histogram():
     cv2.imshow('histrgb', histImageRGB)
     cv2.imshow('histluma', histImageLum)
 
+
 def equal():
     # equalise histogram
     eq = cv2.equalizeHist(luma)
@@ -156,6 +185,7 @@ def equal():
     cv2.imshow('frame', combined)
     cv2.imshow('histluma', histImageLum)
 
+
 def clahe():
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     cl1 = clahe.apply(luma)
@@ -174,14 +204,16 @@ def main(args):
         size = (int(cap.get(3)), int(cap.get(4)))
     if args.write == True:
         # set codec for written video
-        filename = 'out-' + args.path.split('.')[0] + '.mp4'
-        fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+        filename = args.path.split('.')[0] + '-out' + '.mp4'
+        print(filename)
+        fourcc = cv2.VideoWriter_fourcc(*"MP4V")
         fps = int(cap.get(cv2.CAP_PROP_FPS))
         videoWriter = cv2.VideoWriter(filename, fourcc, fps, size)
     if cap != None:
         loopVideo(cap, size, args.loop, videoWriter)
     # When everything done, release the capture
-    videoWriter.release()
+    if videoWriter is not None:
+        videoWriter.release()
     cap.release()
     cv2.destroyAllWindows()
 
