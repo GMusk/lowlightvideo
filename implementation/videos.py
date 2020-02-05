@@ -59,6 +59,14 @@ class FrameEditor:
         return gamma_final_i
 
 
+class ObjectDetector:
+    def __init__(self):
+        pass
+
+    def getMoving(frame):
+        return
+
+
 def getVideo(path):
     cap = cv2.VideoCapture(path)
     if not cap.isOpened():
@@ -77,6 +85,8 @@ def loopVideo(cap, size, loop, vw):
         ret, frame = cap.read()
 
         if ret:
+            # get moving objects
+            movingObjects = getMoving(frame)
             # Call image operations here
             editFrame = fe.doOperation(frame)
 
