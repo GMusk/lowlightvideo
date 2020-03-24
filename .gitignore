@@ -3,4 +3,8 @@ guide.pdf
 Survey/
 literature/
 sources
-
+__pycache__/
+implementation/archive/
+env/
+final_paper/
+out/
