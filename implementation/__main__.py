@@ -1,7 +1,7 @@
 import sys
 import argparse
 import configparser as ConfigParser
-from LowLightEnhancer import LowLightEnhancer
+from LLE import LowLightEnhancer
 
 """ Use __main__ to run enhancer
 
@@ -69,6 +69,7 @@ def main(argv=None):
     parser.add_argument('--option', type=str, help='modus operandi')
     parser.add_argument('-s', '--size', nargs=2, type=int, help='size of video to display')
     parser.add_argument('-b', '--buffer', type=int, help='size of frame buffer')
+    parser.add_argument('-r', '--read', action='store_true', help='attempt read of streams')
     args = vars(parser.parse_args(remaining_argv))
     lle = LowLightEnhancer(args)
     lle.enhance()

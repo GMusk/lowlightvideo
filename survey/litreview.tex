@@ -46,27 +46,12 @@
 
 	A semi-automatic system is proposed by \cite{doi:10.1111/j.1467-8659.2008.01265.x}. Again, the paper focuses on enhancing bright regions within the image. The videos are pre-processed to detect motion flow and clipped regions. A classifier is then used on these regions to identify scene objects, which results in a system robust to pronounced noise and contouring problems. However, this system requires the manual entry of variables for tuning the system, something that an automatic system cannot have. Machine learning is also used in \cite{endo2017deep} and \cite{Eilertsen:2017:HIR:3130800.3130816} to create deep reverse tone mappers. Although our project does not wish to use a completely ML system, the use of machine learning components may be a useful way to improve computation times. 
 
-	%\cite{7952501}
-
-	%\cite{Oskarsson2017}
-
-	%\cite{Temporaladaptationcontrolforlocaltonemappingoperator}
-
-	%\cite{7532485}
-
-	
-	%\cite{Eilertsen:2015:RNT:2816795.2818092}
-
 \subsection{Image Filters}
-
-	% Processing images often use some form of high-dimensional guassian filtering, bilateral filtering and non-local means being two such algorithms.s
 	
 	Low-light video is inherently a noisy source, due to the low exposure and high camera gain.  Most frameworks will use some form of filter to smooth noisy areas, however it is paramount to not lose any of the fine detail that is hidden within the video. This section will review methods for improving existing image filters.
 
 	A large number of papers have made use of some form of the bilateral filter. The bilateral filter uses a Guassian kernel to smooth the source image while preserving edges by accounting for difference in colour intensity and range differences. A number of papers have implemented more computationally efficient bilateral filters, which are especially relevant if the a low-light video is to be adjusted in real-time. \cite{adams2010fast} propose a method which "which tessellates high-dimensional space with uniform simplices". This reduces both the space and time complexities of such algorithms. Similarly, \cite{Adams:2009:GKF:1531326.1531327} propose a method of accelerating filters like the bilateral. Makes use of Monte-Carlo kd tree sampling algorithm. The algorithm takes a significant amount of time to build the tree however, a problem for real-time solutions.
 	\cite{frosio2015machine} uses machine learning to create a bilateral filter, this filter outperforms other filters that require ruled-based tuning.
-
-	%	\cite{Szczepanski2019}
 
 \subsection{Low Light video}
 
@@ -79,28 +64,6 @@
 	\cite{6460559} propose an algorithm which uses luminance maps to acquire detail from low-light frames. The images are then de-hazed by inverting the luminance map, producing a higher contrast image albeit with noise. This noise is addressed by applying a joint-bilateral filter using the green channel to supply edge detail. This method would not work on videos as temporal coherence is not adddressed.
 
 	\cite{li2015low} use a superpixel method to split image into patches. The paper found that the change in gradients at superpixels was large for noisy regions, assuming the noise is additive white Guassian noise, and the change was low in textured regions. Using this, the de-noising filter can be adaptively applied. Path based denoising is also done by \cite{kim2015novel}. Here, they reduce termporal noise - the knaive solution would be to average along temporal dimension but this would leave ghosting artefacts on regions containing motion. Again, a spatio-temporal filter is used. The result is then tone-mapped with a clipping function using gamma correction. Uses non local means to handle remaining spatial noise.
-
-	
-	%\cite{Lian2017} // dehazing
-
-	%\cite{ali2018denoising}
-
-
-
-
-
- 
-	%\cite{doi:10.1111/j.1467-8659.2009.01541.x} this is a survey paper.
-
-
-
-
-
-
-
-
-
-
 
 \bibliography{litreview}
 

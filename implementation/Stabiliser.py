@@ -3,7 +3,7 @@ import numpy as np
 
 class Stabiliser:
     def __init__(self, total_frames, size):
-        self.size = size
+        self.size = (size[1], size[0])
         self.previous_frame = None
         self.transforms = np.zeros((total_frames, 3), np.float32)
 
@@ -103,6 +103,7 @@ class Stabiliser:
 
         # Apply affine wrapping to the given frame
         frame_stabilized = cv2.warpAffine(frame, m, self.size)
+
 
         # Fix border artifacts
         frame_stabilized = self.fixBorder(frame_stabilized)
