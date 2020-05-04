@@ -66,6 +66,8 @@ class LowLightEnhancer:
     def handle_option(self, opt, read):
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
+        cur_filename = self.output_dir + "input30.mp4"
+        self.video_writers["input"] = self.create_vwriter(cur_filename)
         for char in opt:
             if char == 's':
                 cur_filename = self.output_dir + "stable.mp4"
@@ -125,7 +127,7 @@ class LowLightEnhancer:
             return cap
 
     def enough_frames(self):
-        return False
+        return True
 
     def enhance(self):
         """Read video, perform enhancement, & write enhanced video to file
@@ -162,11 +164,12 @@ class LowLightEnhancer:
         i = 0
 
         print("second pass")
-        for i in tqdm(range(self.total_frames)):
+        while not finished:
 
             # Capture frame-by-frame
             ret, frame = self.cap.read()
             initial = frame
+            self.video_writers["input"].write(initial)
 
 
             # check capture
@@ -221,7 +224,7 @@ class LowLightEnhancer:
                     self.video_writers["contribution"].write(contribution)
                     self.video_writers["average"].write(av_frame)
 
-                    if self.enough_frames() and i >= 311:
+                    if self.enough_frames():
                         self.plt.plot_histogram(initial, "input", True)
                         cv2.imwrite(self.output_dir + "input_frame" + ".png", initial)
                         cv2.imwrite(self.output_dir + "expanded_frame" + ".png", edit_frame)
